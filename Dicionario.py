@@ -26,4 +26,5 @@ while True:
         else:
             print(f'\n{palavra} não existe no banco de dados. Tente novamente')
 
+
 print('----------PROGRAMA ENCERRADO---------')
