@@ -208,3 +208,29 @@ def calculadora():
 
     # Chama a função para executar a calculadora
 calculadora()
+
+
+#/--------------MANIPULÇÃO DE DOCUMENTO TXT----------------------/
+
+#gerar um texto dentro do arquivo texto.txt
+
+with open('texto.txt','w',encoding="utf-8") as arquivo_de_texto:
+    arquivo_de_texto.write("Esse texto foi gerado e colocado no arquivo atrvez do codigo write.\n")
+
+#função de imprimir o arquivo ele abre o texto e imprimi ele
+def printar():
+    with open('texto.txt','r') as empresao_arquivo:
+        imprimir=empresao_arquivo.read()
+        print(imprimir)  
+
+    
+#aqui ele adiciona mais texto dentro do proprio texto
+with open('texto.txt','a',encoding="utf-8") as adicionar_texto:
+    adicionar_texto.write('esse texto esta sendo adicionado depois do outro e n subtituido')
+
+#chama funcao para mostrar o arquivo
+printar()
+
+#apaga todo o texto contido no arquivo
+with open('texto.txt','r+',encoding="utf-8") as apagar_texto:
+    apagar_texto.truncate()
