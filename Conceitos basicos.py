@@ -210,7 +210,7 @@ def calculadora():
 calculadora()
 
 
-#/--------------MANIPULÇÃO DE DOCUMENTO TXT----------------------/
+#/-------------------MANIPULÇÃO DE DOCUMENTO TXT------------------------/
 
 #gerar um texto dentro do arquivo texto.txt
 
@@ -234,3 +234,31 @@ printar()
 #apaga todo o texto contido no arquivo
 with open('texto.txt','r+',encoding="utf-8") as apagar_texto:
     apagar_texto.truncate()
+
+#/--------------------MANIPULÇÃO DE DOCUMENTO JSON--------------------------/
+
+
+import json
+texto_docs='cadastro.json'  # aqui ele atribui o arquivo a variavel texto_docs
+
+def transferir():                                 #uma função que carrega o arquivo(le) e tranforma ele umas estrutura em python
+    with open(texto_docs,'r') as texto_original:
+        return json.load(texto_original)
+
+def salva(db): #recebe 'db' que é uma varivel que tem um dicionario 
+    with open(texto_docs,'w') as texto_tranferido:
+        json.dump(db,texto_tranferido,indent=2)    #aqui ele tranforma a estrutura em py para json e grava dentro do proprio arquivo em JSON
+
+db=transferir() #pega os dados do JSON (mesmo que vazio) e coloca na variável 'db'
+
+
+#modifica os dados do db em python
+db.append({"id": 1, "nome": "João", "idade": 25, "sexo": "M", "renda": 3000.0})   
+db.append({"id": 2, "nome": "Maria", "idade": 30, "sexo": "F", "renda": 4500.0})
+
+
+salva(db)  #ai ele grava de volta os arquivo py em Json novamente
+
+print(db)
+#OBS: o codigo so roda se no arquivo JSON ele começar com [], para mostrar que esta vazio 
+
