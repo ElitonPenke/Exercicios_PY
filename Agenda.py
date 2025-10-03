@@ -67,17 +67,30 @@ class Agenda:
             print("=========================================")
 
     def atualizar_contato(self):
-        id = int(input("Me diga o 'ID' do contato que você quer atualizar: "))
-        dado_atualizado = input("O que você quer atualizar? (nome, telefone, email, endereco, aniversario): ").lower()
+        try:
+            id = int(input("Me diga o 'ID' do contato que você quer atualizar: "))
+        except ValueError:
+            print("ID inválido. Por favor, insira um número.")
+            
+        try:
+            dado_atualizado = input("O que você quer atualizar? (nome, telefone, email, endereco, aniversario): ").lower()
+        except ValueError:
+            print("Dado inválido. Por favor, insira um dos dados listados.")
+            return
+
         novo_valor = input(f"Qual o novo valor para {dado_atualizado}? ")
         for contato in self.contatos:
-               contato[dado_atualizado] = novo_valor
-               salvar_contatos(self.contatos)  # ai ele chama a def para salvar a variavel em py para dentro do arquivo JSON
-        print(f"\nContato com ID {id} atualizado com sucesso!\n")
-               
+                contato[dado_atualizado] = novo_valor
+                salvar_contatos(self.contatos)  # ai ele chama a def para salvar a variavel em py para dentro do arquivo JSON
+        print(f"\nContato atualizado com sucesso!\n")
+
 
     def deletar_contato(self):
-        escolha_deletar = int(input("Me diga o 'ID' do contato que você quer deletar: "))
+        try:
+            escolha_deletar = int(input("Me diga o 'ID' do contato que você quer deletar: "))
+        except ValueError:
+            print("ID inválido. Por favor, insira um número.")
+            return  
         #Aqui ele faz uma nova lista com todos os contatos menos o que tem o id igual ao que o usuario escolheu, assim deletando o contato do arquivo
         self.contatos = [contato for contato in self.contatos if contato['id'] != escolha_deletar]
         salvar_contatos(self.contatos)  # ai ele chama a def para salvar a variavel em py para dentro do arquivo JSON
