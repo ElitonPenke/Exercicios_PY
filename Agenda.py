@@ -82,6 +82,9 @@ class Agenda:
         self.contatos = [contato for contato in self.contatos if contato['id'] != escolha_deletar]
         salvar_contatos(self.contatos)  # ai ele chama a def para salvar a variavel em py para dentro do arquivo JSON
         print(f"Contato com ID {escolha_deletar} deletado com sucesso!\n")
+        
+    def buscar_contato(self):
+        pass
 
 #cria o objeto da class Agenda para chamar as funções as quais são estaticas
 agenda_principal = Agenda()
@@ -89,11 +92,18 @@ agenda_principal = Agenda()
 
 #um loop infinito para fazaer de menu
 while True:
-    print('\n|--------1-CADASTRAR NOVO CONTATO-------|')
-    print('|--------2-LISTAR MEUS CONTATOS-----------|')
-    print('|--------3-EDITAR CONTATO-----------------|')
-    print('|--------4-DELETAR CONTATO----------------|')
-    print('|--------5-SAIR---------------------------|\n')
+    print('''
+|=======================================|
+|       MENU PRINCIPAL                  |
+|=======================================|
+| 1 - Cadastrar novo contato            |
+| 2 - Listar contatos                   |
+| 3 - Editar contato                    |
+| 4 - Deletar contato                   |
+| 5 - Buscar contato                    |
+| 6 - Sair                              |
+|=======================================| 
+''')
     opcao=int(input('DIGITE A OPÇÃO DESEJADA: \n'))
 
     match opcao:
@@ -106,5 +116,7 @@ while True:
         case 4:
             agenda_principal.deletar_contato()
         case 5:
+            agenda_principal.buscar_contato()
+        case 6:
             print('SAINDO DO PROGRAMA...')
             break
